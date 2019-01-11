@@ -6,6 +6,7 @@ public class BerryBushRoom extends Room{
 	public void onTick() {
 		// TODO Auto-generated method stub
 		super.onTick();
+		
 	}
 
 }
