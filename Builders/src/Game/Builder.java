@@ -14,6 +14,7 @@ private Tile tile;
 private String profession;
 private Tile destination;
 private LinkedList<Item> items;
+private Job activeJob;
 public Builder(Tile tile) {
 	super();
 	this.tile = tile;
@@ -148,6 +149,12 @@ public LinkedList<Item> getItems() {
 }
 public void setItems(LinkedList<Item> items) {
 	this.items = items;
+}
+public Job getActiveJob() {
+	return activeJob;
+}
+public void setActiveJob(Job activeJob) {
+	this.activeJob = activeJob;
 }
 
 }
