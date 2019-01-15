@@ -8,7 +8,7 @@ private int y;
 private int z;
 private LinkedList<Item> items;
 private int terrainCost;
-private boolean solid;
+private boolean air;
 private Tile north;
 private Tile south;
 private Tile east;
@@ -25,7 +25,7 @@ public void onTick() {
 	
 }
 public boolean enter(Builder b){
-	if (!solid) {
+	if (air) {
 		b.setTile(this);
 		return true;
 	}else {
@@ -67,11 +67,18 @@ public int getTerrainCost() {
 public void setTerrainCost(int terrainCost) {
 	this.terrainCost = terrainCost;
 }
-public boolean isSolid() {
-	return solid;
+
+public Room getRoom() {
+	return room;
 }
-public void setSolid(boolean solid) {
-	this.solid = solid;
+public void setRoom(Room room) {
+	this.room = room;
+}
+public boolean isAir() {
+	return air;
+}
+public void setAir(boolean air) {
+	this.air = air;
 }
 public Tile getNorth() {
 	return north;

@@ -2,31 +2,41 @@ package Game;
 
 import java.util.LinkedList;
 
+import TaskLibrary.moveTask;
+
 public class Builder {
 private boolean walkingDirection;
 private String name;
 private int hunger;
 private int fatigue;
 private int speed;
+private int workSpeed;
 private int movepoints;
 private int health;
+private int maxWeight;
+private int weight;
 private Tile tile;
 private String profession;
 private Tile destination;
 private LinkedList<Item> items;
-private Job activeJob;
+private Task activeTask;
 public Builder(Tile tile) {
 	super();
 	this.tile = tile;
 }
 public void onTick() {
+	if (activeTask != null) {
+		activeTask.performTask(this);
+	}
 	//moving
-	if (destination!=null) {
+	if (activeTask instanceof moveTask) {
 		movepoints+=speed;
 		if (movepoints>=tile.getTerrainCost()) {
-			
+			movepoints-=tile.getTerrainCost();
 			if (tile!=destination) {
 				moveCloserToDestination();
+			}else {
+				//reached destination do work
 			}
 		}
 	}
@@ -34,31 +44,31 @@ public void onTick() {
 }
 private void moveCloserToDestination() {
 	//basic pathfinding trapped in local maxima!!!
-	int movepoint=1;
+	int leaving=1;
 	int xDistance=destination.getX()-tile.getX();
 	int yDistance=destination.getY()-tile.getY();
-	while (movepoint>0) {
+	while (leaving>0) {
 		walkingDirection=!walkingDirection;
 		if (walkingDirection) {
 			if(Integer.signum(xDistance)==1) {
 				if (tile.getEast().enter(this)) {
-					movepoint=0;
+					leaving=0;
 				}
 			}
 			if(Integer.signum(xDistance)==-1) {
 				if (tile.getWest().enter(this)) {
-					movepoint=0;
+					leaving=0;
 				}
 			}
 		}else {
 			if(Integer.signum(yDistance)==1) {
 				if (tile.getSouth().enter(this)) {
-					movepoint=0;
+					leaving=0;
 				}
 			}
 			if(Integer.signum(yDistance)==-1) {
 				if (tile.getNorth().enter(this)) {
-					movepoint=0;
+					leaving=0;
 				}
 			}
 		}
@@ -83,6 +93,21 @@ private void moveCloserToDestination() {
 //private boolean moveUp() {
 //	
 //}
+
+public boolean pickUpItem(Item item) {	
+	if(item.getWeight()<=weight+maxWeight) {
+		items.add(item);
+		weight+=item.getWeight();
+		tile.getItems().remove(item);
+		return true;
+	}
+	return false;
+}
+public void dropItem(Item item) {
+	 items.remove(item);
+	 weight-=item.getWeight();
+	 tile.getItems().add(item);
+}
 //getters and setters
 public boolean isWalkingDirection() {
 	return walkingDirection;
@@ -150,11 +175,30 @@ public LinkedList<Item> getItems() {
 public void setItems(LinkedList<Item> items) {
 	this.items = items;
 }
-public Job getActiveJob() {
-	return activeJob;
+public int getWorkSpeed() {
+	return workSpeed;
 }
-public void setActiveJob(Job activeJob) {
-	this.activeJob = activeJob;
+public void setWorkSpeed(int workSpeed) {
+	this.workSpeed = workSpeed;
 }
+public int getMaxWeight() {
+	return maxWeight;
+}
+public void setMaxWeight(int maxWeight) {
+	this.maxWeight = maxWeight;
+}
+public int getWeight() {
+	return weight;
+}
+public void setWeight(int weight) {
+	this.weight = weight;
+}
+public Task getActiveTask() {
+	return activeTask;
+}
+public void setActiveTask(Task activeTask) {
+	this.activeTask = activeTask;
+}
+
 
 }

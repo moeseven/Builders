@@ -21,6 +21,9 @@ public Game() {
 		for (int y = 0; y < world[1].length; y++) {
 			for (int z = 0; z < world[2].length; z++) {
 				world[x][y][z]= new Tile(x, y, z);
+				if(z==0) {
+					world[x][y][z].setAir(true);
+				}
 			}
 		}
 	}
