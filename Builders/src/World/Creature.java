@@ -5,6 +5,9 @@ public class Creature {
 	private int speed;
 	private int accumulated_movepoints;
 	private World world;
+	public enum Direction{
+		UP,DOWN,NORTH,EAST,SOUTH,WEST
+	}
 	public Creature(World world, int speed) {
 		super();
 		this.world = world;
@@ -15,26 +18,26 @@ public class Creature {
 		x = y = z = 0;
 		accumulated_movepoints = 0;
 	}
-	public boolean move(char direction) {
+	public boolean move(Direction direction) {
 		// should take direction parameter
 		Cube target_of_movement;
 		switch (direction) {
-		case 'u': //up
+		case UP: //up
 			target_of_movement = world.getCube(x, y, z+1);
 			return enter_cube(target_of_movement);
-		case 'd': //down
+		case DOWN: //down
 			target_of_movement = world.getCube(x, y, z-1);
 			return enter_cube(target_of_movement);
-		case 'n': //north
+		case NORTH: //north
 			target_of_movement = world.getCube(x, y+1, z);
 			return enter_cube(target_of_movement);
-		case 'e': //east
+		case EAST: //east
 			target_of_movement = world.getCube(x+1, y, z);
 			return enter_cube(target_of_movement);
-		case 's': //south
+		case SOUTH: //south
 			target_of_movement = world.getCube(x, y-1, z);
 			return enter_cube(target_of_movement);
-		case 'w': //west
+		case WEST: //west
 			target_of_movement = world.getCube(x-1, y, z);
 			return enter_cube(target_of_movement);
 		default:
