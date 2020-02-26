@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>10</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;World&gt;&gt;
+
+--
+
+--
+getCube(int,int,int):Cube //x,y,z
+getCubeFacedByCreature():Cube
+--
+Responsibilities
+-- holding all world entities
+-- </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>510</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Creature&gt;&gt;
+
+--
+- speed: int
+- accumulated_movepoints: int
+- facing: Direction
+--
+moveForward():boolean
+--
+Responsibilities
+-- holding all creature info
+-- providing all creature functions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>190</y>
+      <w>50</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>10</y>
+      <w>210</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Cube&gt;&gt;
+
+--
+- x,y,z: int
+- fill: int
+--
+enter(Creature):boolean
+
+--
+Responsibilities
+-- holding all cube info
+-- providing all cube functions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>20</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>650</x>
+      <y>260</y>
+      <w>230</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;WorldBorderCube&gt;&gt;
+
+--
+
+--
+
+--
+Responsibilities
+-- provide world border functionality
+-- providing all cube functions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>200</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>280</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Control&gt;&gt;
+
+--
+- state: Game_Control_State
+
+--
+input(Key)
+input(Mouse)
+--
+Responsibilities
+-- Controling the Game
+   through user input
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>280</y>
+      <w>210</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;MovableEntityInWorld&gt;&gt;
+
+--
+- position Point3D
+--
+getCube(Creature):Cube
+move(Direction): boolean
+--
+Responsibilities
+-- holding all movableentityinworld info
+-- providing all shared functions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>440</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>290</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+</diagram>
