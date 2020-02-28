@@ -1,7 +1,9 @@
-package GUI;
+package gui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -65,8 +67,10 @@ public class WorldJPanel extends JPanel implements ActionListener{
 		g.fillRect(X_OFFSET + (cube.getPosition().x * CUBE_SIZE), Y_OFFSET + (cube.getPosition().y * CUBE_SIZE),CUBE_SIZE, CUBE_SIZE);
 		//draw selection
 		if (selected_moveable_entity.getPosition().has_same_coordinates(cube.getPosition())) {
-			g.setColor(Color.BLUE);
-			g.fillRect(X_OFFSET + (cube.getPosition().x * CUBE_SIZE), Y_OFFSET + (cube.getPosition().y * CUBE_SIZE), CUBE_SIZE, CUBE_SIZE);
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setColor(Color.BLUE);
+			g2.setStroke(new BasicStroke(3));
+			g2.drawRect(X_OFFSET + (cube.getPosition().x * CUBE_SIZE), Y_OFFSET + (cube.getPosition().y * CUBE_SIZE), CUBE_SIZE, CUBE_SIZE);
 		}
 	}
 	

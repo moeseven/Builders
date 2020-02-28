@@ -1,13 +1,13 @@
 package tests;
 
-import GUI.GameFrame;
-import control.inputHandler;
+import control.keyInputHandler;
+import gui.GameFrame;
 import world.*;
 
 public class GuiTest {
 		static Game game;
 		static MovableEntityInWorld entity;
-		static inputHandler input_handler;
+		static keyInputHandler input_handler;
 		static GameFrame game_frame;
 		private static void check_position() {
 			Cube position_of_creature = entity.getCube();
@@ -21,9 +21,9 @@ public class GuiTest {
 		public static void main(String[] args) {
 			game = new Game();
 			game_frame = new GameFrame(game);
-			entity = game.getPlayer_world_navigator();
-			input_handler = new inputHandler(game.getPlayer_world_navigator());
-			game.getWorld().addCreature(new Creature(game.getWorld(), new Point3D(23, 20,4), 10));
+			entity = game.getHive_mind().getSelector();
+			input_handler = new keyInputHandler(game.getHive_mind());
+			game.getWorld().addCreature(new Creature(game.getWorld(), new Point3D(23, 20,3), 10));
 			game_frame.addKeyListener(input_handler);
 			while (true) {
 				try {

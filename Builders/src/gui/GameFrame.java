@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -15,7 +15,7 @@ public class GameFrame extends JFrame {
 		super();
 		setSize(new Dimension(1100, 1000));
 		setVisible(true);
-		world_jpanel = new WorldJPanel(game.getWorld(), game.getPlayer_world_navigator());
+		world_jpanel = new WorldJPanel(game.getWorld(), game.getHive_mind().getSelector());
 		this.setLayout(new BorderLayout());
 		add(world_jpanel, BorderLayout.CENTER);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

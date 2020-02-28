@@ -28,7 +28,7 @@ public class World {
 		for (int x = 0; x < x_size; x++) {
 			for (int y = 0; y < y_size; y++) {
 				for (int z = 0; z < z_size; z++) {
-					if (z == z_size - 1) {
+					if (z == 0) {
 						filled = 0;
 					}else {
 						if ((filled_cubes_percentage)/100.0 < Math.random() + (z/100)) {
@@ -64,9 +64,9 @@ public class World {
 	public Cube get_adjacent_cube(Cube cube, Direction direction) {
 		switch (direction) {
 		case UP: //up
-			return getCube(new Point3D(cube.getPosition().x, cube.getPosition().y, (cube.getPosition().z + 1)));
-		case DOWN: //down
 			return getCube(new Point3D(cube.getPosition().x, cube.getPosition().y, (cube.getPosition().z - 1)));
+		case DOWN: //down
+			return getCube(new Point3D(cube.getPosition().x, cube.getPosition().y, (cube.getPosition().z + 1)));
 		case NORTH: //north
 			return getCube(new Point3D(cube.getPosition().x, (cube.getPosition().y - 1), (cube.getPosition().z)));
 		case EAST: //east

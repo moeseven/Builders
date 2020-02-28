@@ -4,7 +4,9 @@ public class Creature extends MovableEntityInWorld{
 	
 	private int speed;
 	private int accumulated_movepoints;
+	private int accumulated_workpoints;
 	private Direction facing_direction;
+	private boolean busy;
 	
 	public Creature(World world,Point3D position, int speed) {
 		super(world, position);
@@ -23,6 +25,7 @@ public class Creature extends MovableEntityInWorld{
 			if (cube.fill == 0) {
 				if (cube.enter(this)) {
 					position = cube.getPosition();
+					reset_work_progress();
 					return true;
 				}
 			}						
@@ -36,6 +39,10 @@ public class Creature extends MovableEntityInWorld{
 		return enter_cube(world.get_adjacent_cube(getCube(), facing_direction));
 	}
 	
+	
+	public void reset_work_progress() {
+		accumulated_workpoints = 0;
+	}
 	
 	//getters and setters
 	
@@ -57,6 +64,18 @@ public class Creature extends MovableEntityInWorld{
 	}
 	public void setFacing_direction(Direction facing_direction) {
 		this.facing_direction = facing_direction;
+	}
+	public int getAccumulated_workpoints() {
+		return accumulated_workpoints;
+	}
+	public void setAccumulated_workpoints(int accumulated_workpoints) {
+		this.accumulated_workpoints = accumulated_workpoints;
+	}
+	public boolean isBusy() {
+		return busy;
+	}
+	public void setBusy(boolean busy) {
+		this.busy = busy;
 	}
 	
 	
