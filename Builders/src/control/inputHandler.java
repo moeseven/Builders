@@ -1,6 +1,5 @@
 package control;
 
-import java.awt.KeyEventDispatcher;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
@@ -12,12 +11,12 @@ import java.util.Properties;
 import world.*;
 
 public class inputHandler implements KeyListener{
-	private Creature creature;
+	private MovableEntityInWorld movable_entity;
 	private HashMap<String, String> key_map;
 
-	public inputHandler(Creature creature) {
+	public inputHandler(MovableEntityInWorld creature) {
 		super();
-		this.creature = creature;
+		this.movable_entity = creature;
 		load_key_map("control/keycontrols.properties");
 	}
 	
@@ -60,22 +59,22 @@ public class inputHandler implements KeyListener{
 		
 	
 		if (e.getKeyText(kc).equals(key_map.get("move.up"))) {
-			creature.move(Direction.UP);			
+			movable_entity.move(Direction.UP);			
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.down"))) {
-			creature.move(Direction.DOWN);
+			movable_entity.move(Direction.DOWN);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.west"))) {
-			creature.move(Direction.WEST);
+			movable_entity.move(Direction.WEST);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.east"))) {
-			creature.move(Direction.EAST);
+			movable_entity.move(Direction.EAST);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.south"))) {
-			creature.move(Direction.SOUTH);
+			movable_entity.move(Direction.SOUTH);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.north"))) {
-			creature.move(Direction.NORTH);
+			movable_entity.move(Direction.NORTH);
 		}
 		System.out.println(e.getKeyText(kc));
 	}

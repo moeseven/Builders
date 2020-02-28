@@ -1,4 +1,6 @@
-package world;
+package tests;
+
+import world.*;
 
 public class Worldtest {
 	static World world;
@@ -14,7 +16,7 @@ public class Worldtest {
 	
 	public static void main(String[] args) {
 		// TODO test functionality of basic world
-		world = new World(10,12,4);
+		world = new World(10,12,4,0);
 		creature = new Creature(world, new Point3D(0,0,0), 10);
 		creature.move(Direction.UP);	
 		System.out.println("trying to move up");

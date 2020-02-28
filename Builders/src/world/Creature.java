@@ -15,30 +15,26 @@ public class Creature extends MovableEntityInWorld{
 		accumulated_movepoints = 0;
 		facing_direction = Direction.DOWN;
 	}
+	
+	
+	@Override
+	public boolean enter_cube(Cube cube) {
+		if (cube !=null) {
+			if (cube.fill == 0) {
+				if (cube.enter(this)) {
+					position = cube.getPosition();
+					return true;
+				}
+			}						
+		}
+		return false;
+	}
 	/*
 	 * try to move towards facing direction
 	 */
 	public boolean move_forward() {
 		return enter_cube(world.get_adjacent_cube(getCube(), facing_direction));
 	}
-	
-	/*
-	 * move in a direction
-	 */
-	public boolean move(Direction direction) {
-		return enter_cube(world.get_adjacent_cube(getCube(), direction));
-	}
-	
-	private boolean enter_cube(Cube cube) {
-		if (cube != null) {
-			if (enter(cube)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	
 	
 	
 	//getters and setters

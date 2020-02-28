@@ -9,5 +9,16 @@ public Point3D(int x, int y, int z) {
 	this.y = y;
 	this.z = z;
 }
+
+public boolean has_same_coordinates(Point3D point) {
+	if (x == point.x) {
+		if (y == point.y) {
+			if (z == point.z) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
   
 }

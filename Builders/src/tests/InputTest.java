@@ -1,9 +1,11 @@
-package control;
+package tests;
 
+import GUI.GameFrame;
+import control.inputHandler;
 import world.*;
 
 public class InputTest {
-		static World world;
+		static Game game;
 		static Creature creature;
 		static inputHandler input_handler;
 		static GameFrame game_frame;
@@ -18,10 +20,10 @@ public class InputTest {
 		
 		public static void main(String[] args) {
 			// TODO test functionality of basic world
-			world = new World(10,12,4);
-			creature = new Creature(world, new Point3D(0,0,0), 10);
+			game = new Game();
+			game_frame = new GameFrame(game);
+			creature = new Creature(game.getWorld(), new Point3D(0,0,0), 10);
 			input_handler = new inputHandler(creature);
-			game_frame = new GameFrame();
 			game_frame.addKeyListener(input_handler);
 			check_position();
 			creature.move(Direction.UP);	
