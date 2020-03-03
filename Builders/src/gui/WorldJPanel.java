@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import pathfinding.Path;
 import world.Creature;
 import world.Cube;
 import world.Direction;
@@ -19,6 +20,7 @@ import world.World;
 
 public class WorldJPanel extends JPanel implements ActionListener{
 	private Timer tm = new Timer(150, this);
+	private Path path;
 	private World world;
 	private static int CUBE_SIZE = 10;
 	private static int X_OFFSET = 20;
@@ -37,6 +39,7 @@ public class WorldJPanel extends JPanel implements ActionListener{
 				paintCube(world.getCube(new Point3D(x, y, displayed_z_layer)), g);
 			}
 		}
+		paintPath(path, g);
 		g.setColor(Color.CYAN);
 		for (int c = 0; c < world.getCreatures().size(); c++) {
 			paintCreature(world.getCreatures().get(c), g);
@@ -65,6 +68,7 @@ public class WorldJPanel extends JPanel implements ActionListener{
 			g.setColor(Color.DARK_GRAY); //cube is filled
 		}
 		g.fillRect(X_OFFSET + (cube.getPosition().x * CUBE_SIZE), Y_OFFSET + (cube.getPosition().y * CUBE_SIZE),CUBE_SIZE, CUBE_SIZE);
+		
 		//draw selection
 		if (selected_moveable_entity.getPosition().has_same_coordinates(cube.getPosition())) {
 			Graphics2D g2 = (Graphics2D) g;
@@ -72,6 +76,19 @@ public class WorldJPanel extends JPanel implements ActionListener{
 			g2.setStroke(new BasicStroke(3));
 			g2.drawRect(X_OFFSET + (cube.getPosition().x * CUBE_SIZE), Y_OFFSET + (cube.getPosition().y * CUBE_SIZE), CUBE_SIZE, CUBE_SIZE);
 		}
+	}
+	
+	private void paintPath(Path path, Graphics g) {
+		if (path != null) {
+					Cube cube;
+			for (int i = 0; i < path.getPath().size(); i++) {
+				cube = (Cube) path.getPath().get(i);
+				if (cube.getPosition().z == displayed_z_layer) {
+					g.setColor(Color.red);
+					g.fillOval(X_OFFSET + (cube.getPosition().x * CUBE_SIZE + CUBE_SIZE/3), Y_OFFSET + (cube.getPosition().y * CUBE_SIZE+ CUBE_SIZE/3),CUBE_SIZE/2, CUBE_SIZE/2);				
+				}
+			}
+		}			
 	}
 	
 	private void paintCreature(Creature creature, Graphics g) {
@@ -95,6 +112,12 @@ public class WorldJPanel extends JPanel implements ActionListener{
 	public void setDisplayed_z_layer(int displayed_z_layer) {
 		this.displayed_z_layer = displayed_z_layer;
 	}
+	public Path getPath() {
+		return path;
+	}
+	public void setPath(Path path) {
+		this.path = path;
+	}
 	
-	
+	 
 }

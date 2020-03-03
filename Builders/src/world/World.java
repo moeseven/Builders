@@ -1,8 +1,12 @@
 package world;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 
-public class World {
+import pathfinding.PathfinderField;
+import pathfinding.PathfinderWorld;
+
+public class World implements PathfinderWorld{
 	private WorldBorderCube world_border;
 	private Cube[][][] playable_area;
 	private ArrayList<Creature> creatures;
@@ -89,6 +93,20 @@ public class World {
 			creatures.remove(creature);
 		}
 	}
+	//interface PathfinderWorld
+	@Override
+	public ArrayList<PathfinderField> get_all_adjacent_fields(PathfinderField field) {
+		ArrayList<PathfinderField> retVal = new ArrayList<PathfinderField>();
+		retVal.add(get_adjacent_cube((Cube) field, Direction.UP));
+		retVal.add(get_adjacent_cube((Cube) field, Direction.DOWN));
+		retVal.add(get_adjacent_cube((Cube) field, Direction.NORTH));
+		retVal.add(get_adjacent_cube((Cube) field, Direction.SOUTH));
+		retVal.add(get_adjacent_cube((Cube) field, Direction.WEST));
+		retVal.add(get_adjacent_cube((Cube) field, Direction.EAST));
+		return retVal;
+	}
+
+	//////////////////////////////////////////
 	
 	//getters and setters
 	
@@ -125,6 +143,8 @@ public class World {
 	public void setCreatures(ArrayList<Creature> creatures) {
 		this.creatures = creatures;
 	}
+
+
 
 
 	

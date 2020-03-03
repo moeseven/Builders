@@ -1,9 +1,11 @@
 package world;
 
-public class Cube {
+import pathfinding.PathfinderField;
+
+public class Cube implements PathfinderField{
 	protected Point3D position;
 	protected int fill; //percentage of cube filled with material e.g. dirt
-	
+	protected boolean marked = false;
 	/*
 	 * x,y,z position of cube
 	 * fill is percentage of material in the cube
@@ -18,6 +20,27 @@ public class Cube {
 		return true;
 	}
 	
+	//interface PathfinderField
+	@Override
+	public boolean isPathable() {
+		if (fill>0) {
+			return false;
+		}else {
+			return true;
+		}
+		
+	}
+
+	@Override
+	public int get_path_cost() {
+		// TODO terrain specific cost
+		return 1;
+	}
+	
+	public String toString() {
+		return "[" + this.getPosition().x + "|" + this.getPosition().y + "|" + this.getPosition().z + "]";
+	}
+	///
 	//getters and setters
 	public Point3D getPosition() {
 		return position;
@@ -34,6 +57,15 @@ public class Cube {
 	public void setFill(int fill) {
 		this.fill = fill;
 	}
+
+	public boolean isMarked() {
+		return marked;
+	}
+
+	public void setMarked(boolean marked) {
+		this.marked = marked;
+	}
+
 	
 	
 	

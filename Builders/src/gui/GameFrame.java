@@ -20,6 +20,12 @@ public class GameFrame extends JFrame {
 		add(world_jpanel, BorderLayout.CENTER);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	public WorldJPanel getWorld_jpanel() {
+		return world_jpanel;
+	}
+	public void setWorld_jpanel(WorldJPanel world_jpanel) {
+		this.world_jpanel = world_jpanel;
+	}
 
-
+	
 }

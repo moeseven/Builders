@@ -2,6 +2,7 @@ package tests;
 
 import control.keyInputHandler;
 import gui.GameFrame;
+import pathfinding.PathfinderField;
 import world.*;
 
 public class GuiTest {
@@ -33,6 +34,7 @@ public class GuiTest {
 					e.printStackTrace();
 				}
 				//check_position();
+				//System.out.println(game.getWorld().get_all_adjacent_fields(entity.getCube()).size());
 			}
 		}
 }

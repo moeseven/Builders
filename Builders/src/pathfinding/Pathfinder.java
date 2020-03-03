@@ -12,11 +12,14 @@ public class Pathfinder {
 	private PathfinderField origin;
 	private PathfinderField destination;
 	private PathfinderWorld world;
-	public Pathfinder(PathfinderField origin, PathfinderField destination, PathfinderWorld world) {
+	public Pathfinder(PathfinderWorld world) {
 		super();
-		this.origin = origin;
-		this.destination = destination;
+		
 		this.world = world;
+		clear_maps();
+	}
+	
+	private void clear_maps() {
 		best_paths_map = new HashMap<PathfinderField,Path>();
 		newly_accessible_fields = new HashSet<PathfinderField>();
 		reset_buffer_newly_accessible_fields = new HashSet<PathfinderField>();
@@ -30,20 +33,24 @@ public class Pathfinder {
 		}
 	}
 	
-	public boolean find_path() {
-		//TODO pathfinding algorithm
-		
-		newly_accessible_fields.add(origin);
-		while (!path_found() || newly_accessible_fields.size() == 0) {
-			reset_newly_accessible_fields();
-			for(PathfinderField field : reset_buffer_newly_accessible_fields) {
-				scan_step(field);
+	public boolean find_path(PathfinderField origin, PathfinderField destination) {
+		this.origin = origin;
+		this.destination = destination;
+		clear_maps();
+		if (destination.isPathable()) {
+			newly_accessible_fields.add(origin);
+			while (!path_found() && newly_accessible_fields.size() > 0) {
+				reset_newly_accessible_fields();
+				for(PathfinderField field : reset_buffer_newly_accessible_fields) {
+					scan_step(field);
+				}
 			}
 		}
+		
 		return path_found();
 	}
 	
-	private boolean path_found() {
+	public boolean path_found() {
 		if (best_paths_map.containsKey(destination)) {
 			return true;
 		}else {
@@ -56,15 +63,22 @@ public class Pathfinder {
 	private void scan_step(PathfinderField field) {
 		ArrayList<PathfinderField> adjacent_fields = world.get_all_adjacent_fields(field);
 		for (int i = 0; i < adjacent_fields.size(); i++) {
-			Path another_path = new Path(best_paths_map.get(field).getPath());
-			another_path.addField(adjacent_fields.get(0));
-			if (best_paths_map.containsKey(adjacent_fields.get(i))) {
-				if (another_path.get_cost() < best_paths_map.get(adjacent_fields.get(i)).get_cost()) {
+			if (adjacent_fields.get(i).isPathable()) {
+				Path another_path;
+				if (best_paths_map.containsKey(field)) {
+					another_path = new Path(best_paths_map.get(field).getPath());
+				}else {
+					another_path = new Path();
+				}
+				another_path.addField(adjacent_fields.get(i));
+				if (best_paths_map.containsKey(adjacent_fields.get(i))) {
+					if (another_path.get_cost() < best_paths_map.get(adjacent_fields.get(i)).get_cost()) {
+						better_path(adjacent_fields.get(i),another_path);
+					}
+				}else {
 					better_path(adjacent_fields.get(i),another_path);
 				}
-			}else {
-				better_path(adjacent_fields.get(i),another_path);
-			}
+			}			
 		}
 	}
 	

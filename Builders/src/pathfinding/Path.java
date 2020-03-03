@@ -19,6 +19,10 @@ public class Path {
 		}
 	}
 	
+	public Path() {
+		path = new LinkedList<PathfinderField>();
+	}
+	
 	public boolean addField(PathfinderField field) {
 		if (field.isPathable()) {
 			path.add(field);
@@ -37,6 +41,14 @@ public class Path {
 		int retVal = 0;
 		for (int i = 0; i < path.size(); i++) {
 			retVal += path.get(i).get_path_cost();
+		}
+		return retVal;
+	}
+	
+	public String toString() {
+		String retVal = "";
+		for (int i = 0; i < path.size(); i++) {
+			retVal += path.get(i).toString();
 		}
 		return retVal;
 	}
