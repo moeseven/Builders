@@ -7,7 +7,7 @@ public class Game {
 	private HiveMind hive_mind;
 	public Game() {
 		super();
-		world = new World(100, 90, 7,20);
+		world = new World(100, 90, 7,30);
 		hive_mind = new HiveMind(world, new Point3D(0, 0, 0));
 	}
 
