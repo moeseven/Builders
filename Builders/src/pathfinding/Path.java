@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 public class Path {
 	private LinkedList<PathfinderField> path;
+	private int index_for_walking;
 	
 	
 	/*
@@ -17,6 +18,7 @@ public class Path {
 		for (int i = 0; i < path.size(); i++) {
 			add_field(path.get(i));
 		}
+		index_for_walking = 0;
 	}
 	
 	public Path() {
@@ -56,6 +58,14 @@ public class Path {
 	//getters and setters
 	public LinkedList<PathfinderField> getPath() {
 		return path;
+	}
+
+	public int getIndex_for_walking() {
+		return index_for_walking;
+	}
+
+	public void setIndex_for_walking(int index_for_walking) {
+		this.index_for_walking = index_for_walking;
 	}
 
 //	public void setPath(LinkedList<PathfinderField> path) {

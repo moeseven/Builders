@@ -18,6 +18,12 @@ public class Pathfinder {
 		clear_maps();
 	}
 	
+	public void reset() {
+		origin = null;
+		destination = null;
+		clear_maps();
+	}
+	
 	private void clear_maps() {
 		best_paths_map = new HashMap<PathfinderField,Path>();
 		newly_accessible_fields = new HashSet<PathfinderField>();
@@ -38,24 +44,37 @@ public class Pathfinder {
 		clear_maps();
 		if (destination.is_pathable()) {
 			newly_accessible_fields.add(origin);
-			while (!path_found() && newly_accessible_fields.size() > 0) {
+			while (!path_found(this.origin,this.destination) && newly_accessible_fields.size() > 0) {
 				reset_newly_accessible_fields();
 				for(PathfinderField field : reset_buffer_newly_accessible_fields) {
 					scan_step(field);
 				}
 			}
 		}
-		
-		return path_found();
+		return path_found(this.origin, this.destination);
 	}
 	
-	public boolean path_found() {
+	/*
+	 * returns true if a path between origin and destination 
+	 * is found (e.g. the path map contains such a path)
+	 */
+	public boolean path_found(PathfinderField origin,PathfinderField destination) {
+		if (origin.equals(this.origin)&& best_paths_map.containsKey(destination)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
+	public boolean path_found(PathfinderField destination) {
 		if (best_paths_map.containsKey(destination)) {
 			return true;
 		}else {
 			return false;
 		}
 	}
+	
 	/*
 	 *scans all adjacent fields and tries to find better paths towards them 
 	 */

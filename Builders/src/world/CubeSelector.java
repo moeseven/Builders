@@ -1,6 +1,6 @@
 package world;
 
-public class CubeSelector extends MovableEntityInWorld{
+public class CubeSelector extends MoveableEntityInWorld{
 	private Cube last_cube; //so you can move into walls with a depth of 1
 	
 	public CubeSelector(World world, Point3D position) {

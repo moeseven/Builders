@@ -6,6 +6,8 @@ public class Cube implements PathfinderField{
 	protected Point3D position;
 	protected int fill; //percentage of cube filled with material e.g. dirt
 	protected boolean marked = false;
+	protected int base_movement_cost = 50;
+	
 	/*
 	 * x,y,z position of cube
 	 * fill is percentage of material in the cube
@@ -16,7 +18,7 @@ public class Cube implements PathfinderField{
 		this.fill = fill;
 	}
 	
-	public boolean enter(MovableEntityInWorld entity) {
+	public boolean enter(MoveableEntityInWorld entity) {
 		return true;
 	}
 	
@@ -34,7 +36,7 @@ public class Cube implements PathfinderField{
 	@Override
 	public int get_path_cost() {
 		// TODO terrain specific cost
-		return 1;
+		return base_movement_cost;
 	}
 	
 	public String toString() {

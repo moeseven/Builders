@@ -8,22 +8,27 @@ import javax.swing.Timer;
 import gui.Vision;
 import hive.HiveMind;
 
-public class Game implements ActionListener {
+public class Game implements ActionListener, ClassWithGameTick{
+	private static int GAME_TICK_TIME = 200;
 	private World world;
 	private HiveMind hive_mind;
-	private Timer game_tick_timer = new Timer(150, this);
+	private Timer game_tick_timer = new Timer(GAME_TICK_TIME, this);
 	private Vision vision;
 	public Game() {
 		super();
 		world = new World(100, 90, 7,30);
 		hive_mind = new HiveMind(world, new Point3D(0, 0, 0));
 		vision = new Vision(this);
-		//game_tick_timer.start();
+		game_tick_timer.start();
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		tick();
+		update();
+		game_tick_timer.restart();
+	}
+	public void update() {
 		vision.update();
-		//game_tick_timer.restart();
 	}
 	//getters and setters
 	
@@ -47,6 +52,11 @@ public class Game implements ActionListener {
 	}
 	public void setVision(Vision vision) {
 		this.vision = vision;
+	}
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+		hive_mind.tick();
 	}
 
 

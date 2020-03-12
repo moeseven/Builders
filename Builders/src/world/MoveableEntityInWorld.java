@@ -1,14 +1,13 @@
 package world;
 
-public abstract class MovableEntityInWorld {
+public abstract class MoveableEntityInWorld {
 	protected Point3D position;
 	protected World world;
 
-	public MovableEntityInWorld(World world, Point3D position) {
+	public MoveableEntityInWorld(World world, Point3D position) {
 		super();
 		this.world = world;
 		this.position = position;
-		
 	}
 	
 	/*
@@ -29,6 +28,18 @@ public abstract class MovableEntityInWorld {
 	public boolean move(Direction direction) {
 		return enter_cube(world.get_adjacent_cube(getCube(), direction));
 	}
+	/*
+	 * move to cube
+	 * only allows moving to adjacent cubes
+	 */
+	public boolean move(Cube cube) {
+		if (world.get_all_adjacent_fields(getCube()).contains(cube)) {
+			return enter_cube(cube);
+		}else {
+			return false;
+		}
+		
+	}
 	
 	//getters and setters
 	
@@ -46,5 +57,6 @@ public abstract class MovableEntityInWorld {
 	public void setPosition(Point3D position) {
 		this.position = position;
 	}
+
 	
 }

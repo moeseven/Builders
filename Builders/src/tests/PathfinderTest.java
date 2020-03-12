@@ -6,7 +6,7 @@ import pathfinding.Pathfinder;
 import world.Creature;
 import world.Cube;
 import world.Game;
-import world.MovableEntityInWorld;
+import world.MoveableEntityInWorld;
 import world.Point3D;
 
 public class PathfinderTest {
@@ -22,14 +22,15 @@ public class PathfinderTest {
 		pathfinder = new Pathfinder(game.getWorld());	
 		while (true) {
 			//find new path
-			pathfinder.find_path(game.getWorld().getCube(new Point3D((int) (Math.random()*game.getWorld().getX_size()), (int) (Math.random()*game.getWorld().getY_size()), 0)), game.getWorld().getCube(new Point3D((int) (Math.random()*game.getWorld().getX_size()), (int) (Math.random()*game.getWorld().getY_size()), (int) (Math.random()*game.getWorld().getZ_size()))));
-			if (pathfinder.path_found()) {
+			Cube destination = game.getWorld().getCube(new Point3D((int) (Math.random()*game.getWorld().getX_size()), (int) (Math.random()*game.getWorld().getY_size()), (int) (Math.random()*game.getWorld().getZ_size())));
+			pathfinder.find_path(game.getWorld().getCube(new Point3D((int) (Math.random()*game.getWorld().getX_size()), (int) (Math.random()*game.getWorld().getY_size()), 0)), destination);
+			if (pathfinder.path_found(destination)) {
 				System.out.println(pathfinder.get_best_path().toString());
 			}else {
 				System.out.println("there was no path that could be found");
 			}
 			game.getVision().getGame_frame().getWorld_jpanel().setPath(pathfinder.get_best_path());
-			game.actionPerformed(null);
+			game.update();
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {

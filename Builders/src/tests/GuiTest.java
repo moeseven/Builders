@@ -7,7 +7,7 @@ import world.*;
 
 public class GuiTest {
 		static Game game;
-		static MovableEntityInWorld entity;
+		static MoveableEntityInWorld entity;
 		static keyInputHandler input_handler;
 		static GameFrame game_frame;
 		private static void check_position() {

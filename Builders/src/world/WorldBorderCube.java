@@ -9,7 +9,7 @@ public class WorldBorderCube extends Cube {
 		super( new Point3D(0, 0, 0),1);
 	}
 	@Override
-	public boolean enter(MovableEntityInWorld entity) {
+	public boolean enter(MoveableEntityInWorld entity) {
 		return false;
 	}
 

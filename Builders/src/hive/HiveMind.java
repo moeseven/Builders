@@ -2,18 +2,23 @@ package hive;
 
 import java.util.ArrayList;
 
+import world.ClassWithGameTick;
+import world.Creature;
 import world.CubeSelector;
 import world.Point3D;
 import world.World;
 
-public class HiveMind {
+public class HiveMind implements ClassWithGameTick{
 	private int energy;
 	private CubeSelector selector;
 	private World world;
 	private ArrayList<Order> orders;
+	private ArrayList<Creature> creatures;
 	public HiveMind(World world, Point3D position) {
 		super();
 		this.world = world;
+		creatures = new ArrayList<Creature>();
+		orders = new ArrayList<Order>();
 		selector = new CubeSelector(world, position);
 	}
 	
@@ -25,6 +30,19 @@ public class HiveMind {
 			orders.remove(order);
 		}
 	}
+	public void addCreature(Creature creature) {
+		creatures.add(creature);
+	}
+		@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+			for (int i = 0; i < creatures.size(); i++) {
+				creatures.get(i).tick();
+			}
+			//creatures.forEach((n) -> n.tick());
+	}
+		
+		
 	//getters and setters
 	public int getEnergy() {
 		return energy;
@@ -44,5 +62,23 @@ public class HiveMind {
 	public void setWorld(World world) {
 		this.world = world;
 	}
+
+	public ArrayList<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(ArrayList<Order> orders) {
+		this.orders = orders;
+	}
+
+	public ArrayList<Creature> getCreatures() {
+		return creatures;
+	}
+
+	public void setCreatures(ArrayList<Creature> creatures) {
+		this.creatures = creatures;
+	}
+	///////////////////////////////
+
 	
 }
