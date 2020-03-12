@@ -12,15 +12,13 @@ import world.Point3D;
 public class PathfinderTest {
 	static Game game;
 	static keyInputHandler input_handler;
-	static GameFrame game_frame;
 	static Pathfinder pathfinder;
 	
 	public static void main(String[] args) {
 		game = new Game();
-		game_frame = new GameFrame(game);
-		input_handler = new keyInputHandler(game.getHive_mind());
+		input_handler = new keyInputHandler(game);
 		game.getWorld().addCreature(new Creature(game.getWorld(), new Point3D(23, 20,3), 10));
-		game_frame.addKeyListener(input_handler);
+		game.getVision().getGame_frame().addKeyListener(input_handler);
 		pathfinder = new Pathfinder(game.getWorld());	
 		while (true) {
 			//find new path
@@ -30,7 +28,8 @@ public class PathfinderTest {
 			}else {
 				System.out.println("there was no path that could be found");
 			}
-			game_frame.getWorld_jpanel().setPath(pathfinder.get_best_path());
+			game.getVision().getGame_frame().getWorld_jpanel().setPath(pathfinder.get_best_path());
+			game.actionPerformed(null);
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {

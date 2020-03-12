@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>130</x>
+      <y>310</y>
+      <w>30</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>160</y>
+      <w>280</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Pathfinder
+
+--
+
+--
+get_best_path(): Path
+find_path(origin, destination): boolean
+--
+Responsibilities
+-- finding the best path from 
+   point A to point B</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>440</y>
+      <w>280</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Path
+
+--
+- path : LinkedList&lt;PathfinderField&gt;
+--
+add_field(PathfinderField field) : boolean
+get_cost() : int
+--
+Responsibilities
+-- represents a path in a World </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>340</x>
+      <y>190</y>
+      <w>480</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+PathfinderWorld
+
+--
+
+--
+get_all_adjacent_fields(PathfinderField field) : ArrayList&lt;PathfinderField&gt;
+--
+Responsibilities
+-- knows about how fields are linked</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>460</y>
+      <w>160</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+PathfinderField
+
+--
+
+--
+is_pathable() : boolean
+get_path_cost() : int
+--
+Responsibilities
+-- knows about its cost</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>330</y>
+      <w>30</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+</diagram>

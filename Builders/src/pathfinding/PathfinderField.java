@@ -1,7 +1,7 @@
 package pathfinding;
 
 public interface PathfinderField {
-	public boolean isPathable();
+	public boolean is_pathable();
 	public int get_path_cost();
 	public String toString();
 }

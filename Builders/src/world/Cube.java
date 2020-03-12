@@ -22,7 +22,7 @@ public class Cube implements PathfinderField{
 	
 	//interface PathfinderField
 	@Override
-	public boolean isPathable() {
+	public boolean is_pathable() {
 		if (fill>0) {
 			return false;
 		}else {

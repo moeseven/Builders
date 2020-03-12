@@ -7,7 +7,7 @@ public class Path {
 	
 	
 	/*
-	 * this consturctor does take the elemtns form the list
+	 * this consturctor does take the elemetns form the list
 	 * and makes a new List form it. 
 	 * The original list remains untouched
 	 */
@@ -15,7 +15,7 @@ public class Path {
 		super();
 		this.path = new LinkedList<PathfinderField>();
 		for (int i = 0; i < path.size(); i++) {
-			addField(path.get(i));
+			add_field(path.get(i));
 		}
 	}
 	
@@ -23,8 +23,8 @@ public class Path {
 		path = new LinkedList<PathfinderField>();
 	}
 	
-	public boolean addField(PathfinderField field) {
-		if (field.isPathable()) {
+	public boolean add_field(PathfinderField field) {
+		if (field.is_pathable()) {
 			path.add(field);
 			return true;
 		}else {

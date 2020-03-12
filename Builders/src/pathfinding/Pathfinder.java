@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Pathfinder {
-	private static int MAX_PATHFINDING_STEPS;
 	private HashSet<PathfinderField> newly_accessible_fields;
 	private HashSet<PathfinderField> reset_buffer_newly_accessible_fields;
 	private HashMap<PathfinderField,Path> best_paths_map;
@@ -37,7 +36,7 @@ public class Pathfinder {
 		this.origin = origin;
 		this.destination = destination;
 		clear_maps();
-		if (destination.isPathable()) {
+		if (destination.is_pathable()) {
 			newly_accessible_fields.add(origin);
 			while (!path_found() && newly_accessible_fields.size() > 0) {
 				reset_newly_accessible_fields();
@@ -63,14 +62,14 @@ public class Pathfinder {
 	private void scan_step(PathfinderField field) {
 		ArrayList<PathfinderField> adjacent_fields = world.get_all_adjacent_fields(field);
 		for (int i = 0; i < adjacent_fields.size(); i++) {
-			if (adjacent_fields.get(i).isPathable()) {
+			if (adjacent_fields.get(i).is_pathable()) {
 				Path another_path;
 				if (best_paths_map.containsKey(field)) {
 					another_path = new Path(best_paths_map.get(field).getPath());
 				}else {
 					another_path = new Path();
 				}
-				another_path.addField(adjacent_fields.get(i));
+				another_path.add_field(adjacent_fields.get(i));
 				if (best_paths_map.containsKey(adjacent_fields.get(i))) {
 					if (another_path.get_cost() < best_paths_map.get(adjacent_fields.get(i)).get_cost()) {
 						better_path(adjacent_fields.get(i),another_path);

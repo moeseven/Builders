@@ -21,9 +21,8 @@ public class GuiTest {
 		
 		public static void main(String[] args) {
 			game = new Game();
-			game_frame = new GameFrame(game);
 			entity = game.getHive_mind().getSelector();
-			input_handler = new keyInputHandler(game.getHive_mind());
+			input_handler = new keyInputHandler(game);
 			game.getWorld().addCreature(new Creature(game.getWorld(), new Point3D(23, 20,3), 10));
 			game_frame.addKeyListener(input_handler);
 			while (true) {

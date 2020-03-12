@@ -12,12 +12,12 @@ import hive.HiveMind;
 import world.*;
 
 public class keyInputHandler implements KeyListener{
-	private HiveMind hive_mind;
+	private Game game;
 	private HashMap<String, String> key_map;
 
-	public keyInputHandler(HiveMind hive_mind) {
+	public keyInputHandler(Game game) {
 		super();
-		this.hive_mind = hive_mind;
+		this.game = game;
 		load_key_map("control/keycontrols.properties");
 	}
 	
@@ -58,28 +58,29 @@ public class keyInputHandler implements KeyListener{
 		// TODO Auto-generated method stub
 		int kc = e.getKeyCode();			
 		if (e.getKeyText(kc).equals(key_map.get("move.up"))) {
-			hive_mind.getSelector().move(Direction.UP);			
+			game.getHive_mind().getSelector().move(Direction.UP);			
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.down"))) {
-			hive_mind.getSelector().move(Direction.DOWN);
+			game.getHive_mind().getSelector().move(Direction.DOWN);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.west"))) {
-			hive_mind.getSelector().move(Direction.WEST);
+			game.getHive_mind().getSelector().move(Direction.WEST);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.east"))) {
-			hive_mind.getSelector().move(Direction.EAST);
+			game.getHive_mind().getSelector().move(Direction.EAST);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.south"))) {
-			hive_mind.getSelector().move(Direction.SOUTH);
+			game.getHive_mind().getSelector().move(Direction.SOUTH);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("move.north"))) {
-			hive_mind.getSelector().move(Direction.NORTH);
+			game.getHive_mind().getSelector().move(Direction.NORTH);
 		}
 		if (e.getKeyText(kc).equals(key_map.get("order.move"))) {
 			//TODO
 			//hive_mind.new_order(new MoveOrder());
 		}
 		System.out.println(e.getKeyText(kc));
+		game.actionPerformed(null);
 	}
 
 	@Override
