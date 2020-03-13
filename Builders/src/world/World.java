@@ -94,22 +94,47 @@ public class World implements PathfinderWorld{
 		}
 	}
 	//interface PathfinderWorld
+	
 	@Override
-	public ArrayList<PathfinderField> get_all_adjacent_fields(PathfinderField field) {
+	public ArrayList<PathfinderField> get_immediatly_accessable_fields(PathfinderField field) {
+		// Gravity (no air walk)
 		ArrayList<PathfinderField> retVal = new ArrayList<PathfinderField>();
 		retVal.add(get_adjacent_cube((Cube) field, Direction.UP));
 		retVal.add(get_adjacent_cube((Cube) field, Direction.DOWN));
-		retVal.add(get_adjacent_cube((Cube) field, Direction.NORTH));
-		retVal.add(get_adjacent_cube((Cube) field, Direction.SOUTH));
-		retVal.add(get_adjacent_cube((Cube) field, Direction.WEST));
-		retVal.add(get_adjacent_cube((Cube) field, Direction.EAST));
+		if (!get_adjacent_cube((Cube) field, Direction.DOWN).is_pathable()) {
+			//we are on solid ground
+			retVal.add(get_adjacent_cube((Cube) field, Direction.NORTH));
+			retVal.add(get_adjacent_cube((Cube) field, Direction.SOUTH));
+			retVal.add(get_adjacent_cube((Cube) field, Direction.WEST));
+			retVal.add(get_adjacent_cube((Cube) field, Direction.EAST));			
+		}else {
+			//we are not on solid ground (empty block below)
+			if (!get_adjacent_cube((Cube) get_adjacent_cube((Cube) field, Direction.NORTH), Direction.DOWN).is_pathable()) {
+				retVal.add(get_adjacent_cube((Cube) field, Direction.NORTH));
+			}
+			if (!get_adjacent_cube((Cube) get_adjacent_cube((Cube) field, Direction.SOUTH), Direction.DOWN).is_pathable()) {
+				retVal.add(get_adjacent_cube((Cube) field, Direction.SOUTH));
+			}
+			if (!get_adjacent_cube((Cube) get_adjacent_cube((Cube) field, Direction.WEST), Direction.DOWN).is_pathable()) {
+				retVal.add(get_adjacent_cube((Cube) field, Direction.WEST));
+			}
+			if (!get_adjacent_cube((Cube) get_adjacent_cube((Cube) field, Direction.EAST), Direction.DOWN).is_pathable()) {
+				retVal.add(get_adjacent_cube((Cube) field, Direction.EAST));
+			}
+		}
+		
+		
 		return retVal;
 	}
+	
 
 	//////////////////////////////////////////
 	
 	//getters and setters
 	
+	
+
+
 	public int getX_size() {
 		return x_size;
 	}

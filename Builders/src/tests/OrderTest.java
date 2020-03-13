@@ -18,6 +18,8 @@ public class OrderTest {
 		game = new Game();
 		input_handler = new keyInputHandler(game);
 		game.getVision().getGame_frame().addKeyListener(input_handler);	
-		game.getHive_mind().addCreature(new Creature(game.getWorld(), new Point3D(23, 20,0), 10));
+		game.getHive_mind().add_creature(new Creature(game.getWorld(), new Point3D(23, 20,0), 10));
+		game.getHive_mind().add_creature(new Creature(game.getWorld(), new Point3D(13, 20,0), 11));
+		game.getHive_mind().add_creature(new Creature(game.getWorld(), new Point3D(23, 2,0), 10));
 	}
 }

@@ -79,7 +79,7 @@ public class Pathfinder {
 	 *scans all adjacent fields and tries to find better paths towards them 
 	 */
 	private void scan_step(PathfinderField field) {
-		ArrayList<PathfinderField> adjacent_fields = world.get_all_adjacent_fields(field);
+		ArrayList<PathfinderField> adjacent_fields = world.get_immediatly_accessable_fields(field);
 		for (int i = 0; i < adjacent_fields.size(); i++) {
 			if (adjacent_fields.get(i).is_pathable()) {
 				Path another_path;

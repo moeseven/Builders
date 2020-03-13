@@ -34,6 +34,7 @@ public class CreatureMovement{
 						fail_count++;
 						if (fail_count > 10) {
 							creature.setBusy(false);
+							creature.give_movement_destination(creature.getCube());
 						}
 					}
 				}else {

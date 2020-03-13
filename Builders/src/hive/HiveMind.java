@@ -30,7 +30,15 @@ public class HiveMind implements ClassWithGameTick{
 			orders.remove(order);
 		}
 	}
-	public void addCreature(Creature creature) {
+	public Creature get_non_busy_creature() {
+		for (int i = 0; i < creatures.size(); i++) {
+			if (!creatures.get(i).isBusy()) {
+				return creatures.get(i);
+			}
+		}
+		return null;
+	}
+	public void add_creature(Creature creature) {
 		creatures.add(creature);
 	}
 		@Override

@@ -33,7 +33,7 @@ public abstract class MoveableEntityInWorld {
 	 * only allows moving to adjacent cubes
 	 */
 	public boolean move(Cube cube) {
-		if (world.get_all_adjacent_fields(getCube()).contains(cube)) {
+		if (world.get_immediatly_accessable_fields(getCube()).contains(cube)) {
 			return enter_cube(cube);
 		}else {
 			return false;

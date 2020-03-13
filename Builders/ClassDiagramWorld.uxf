@@ -210,15 +210,15 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>480</y>
+      <x>200</x>
+      <y>490</y>
       <w>240</w>
       <h>210</h>
     </coordinates>
     <panel_attributes>Order
 
 --
-- is_running: boolean
+- running: boolean
 - is_loop_order: boolean
 --
 appoint_creature(Creature)
@@ -246,6 +246,7 @@ Responsibilities
 --
 new_order(Order)
 cancle_order(Order)
+get_free_creature():Creature
 --
 Responsibilities
 -- gnerating orders
@@ -257,13 +258,13 @@ Responsibilities
     <coordinates>
       <x>310</x>
       <y>350</y>
-      <w>60</w>
-      <h>150</h>
+      <w>50</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=0..n</panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -281,15 +282,15 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>490</y>
-      <w>180</w>
-      <h>370</h>
+      <x>430</x>
+      <y>500</y>
+      <w>190</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..1
 m2=0..1</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;350.0</additional_attributes>
+    <additional_attributes>10.0;10.0;150.0;340.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -307,7 +308,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
+      <x>200</x>
       <y>780</y>
       <w>240</w>
       <h>150</h>
@@ -315,7 +316,7 @@ m2=1</panel_attributes>
     <panel_attributes>/Workpackage/
 
 --
-- is_running: boolean
+- running: boolean
 --
 finish()
 --
@@ -327,20 +328,20 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>680</y>
+      <x>310</x>
+      <y>690</y>
       <w>50</w>
-      <h>120</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
 m2=0..n</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
+      <x>200</x>
       <y>990</y>
       <w>240</w>
       <h>150</h>
@@ -351,6 +352,7 @@ m2=0..n</panel_attributes>
 path: Path
 --
 finish()
+do_work()
 --
 Responsibilities
 -- contains a path
@@ -361,7 +363,7 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
+      <x>310</x>
       <y>920</y>
       <w>30</w>
       <h>90</h>

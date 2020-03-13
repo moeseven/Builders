@@ -67,7 +67,7 @@ PathfinderWorld
 --
 
 --
-get_all_adjacent_fields(PathfinderField field) : ArrayList&lt;PathfinderField&gt;
+get_immidiately_accessable_fields(PathfinderField field) : ArrayList&lt;PathfinderField&gt;
 --
 Responsibilities
 -- knows about how fields are linked</panel_attributes>

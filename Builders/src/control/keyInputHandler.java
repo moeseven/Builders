@@ -77,7 +77,10 @@ public class keyInputHandler implements KeyListener{
 		}
 		if (e.getKeyText(kc).equals(key_map.get("order.move"))) {
 			//TODO
-			game.getHive_mind().getCreatures().get(0).give_movement_destination(game.getHive_mind().getSelector().getCube());
+			Creature creature = game.getHive_mind().get_non_busy_creature();
+			if (creature != null) {
+				creature.give_movement_destination(game.getHive_mind().getSelector().getCube());
+			}			
 		}
 		System.out.println(e.getKeyText(kc));
 		game.update();

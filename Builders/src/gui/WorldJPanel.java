@@ -96,6 +96,10 @@ public class WorldJPanel extends JPanel{
 	private void paintCreature(Creature creature, Graphics g) {
 		if (creature.getPosition().z == game.getHive_mind().getSelector().getPosition().z) {			
 			g.fillOval(X_OFFSET + (creature.getPosition().x * CUBE_SIZE), Y_OFFSET + (creature.getPosition().y * CUBE_SIZE), CUBE_SIZE, CUBE_SIZE);
+		}else {
+			if (creature.getPosition().z - 1 == game.getHive_mind().getSelector().getPosition().z) {
+				g.fillOval(X_OFFSET + (creature.getPosition().x * CUBE_SIZE + CUBE_SIZE / 3), Y_OFFSET + (creature.getPosition().y * CUBE_SIZE + CUBE_SIZE / 3), CUBE_SIZE/2, CUBE_SIZE/2);
+			}
 		}
 		
 	}
