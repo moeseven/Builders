@@ -12,24 +12,18 @@ public class HiveMind implements ClassWithGameTick{
 	private int energy;
 	private CubeSelector selector;
 	private World world;
-	private ArrayList<Order> orders;
+
 	private ArrayList<Creature> creatures;
 	public HiveMind(World world, Point3D position) {
 		super();
 		this.world = world;
 		creatures = new ArrayList<Creature>();
-		orders = new ArrayList<Order>();
 		selector = new CubeSelector(world, position);
 	}
 	
-	public void new_order(Order order) {
-		orders.add(order);
-	}
-	public void cancle_order(Order order) {
-		if (orders.contains(order)) {
-			orders.remove(order);
-		}
-	}
+	/*
+	 * finds and returns first creature from creatures that has nothing to do
+	 */
 	public Creature get_non_busy_creature() {
 		for (int i = 0; i < creatures.size(); i++) {
 			if (!creatures.get(i).isBusy()) {
@@ -71,13 +65,7 @@ public class HiveMind implements ClassWithGameTick{
 		this.world = world;
 	}
 
-	public ArrayList<Order> getOrders() {
-		return orders;
-	}
 
-	public void setOrders(ArrayList<Order> orders) {
-		this.orders = orders;
-	}
 
 	public ArrayList<Creature> getCreatures() {
 		return creatures;

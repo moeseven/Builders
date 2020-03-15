@@ -13,15 +13,10 @@ public class Order {
 	public Order(HiveMind hive_mind) {
 		super();
 		this.hive_mind = hive_mind;
+		this.work_packages = new ArrayList<Workpackage>();
 	}
-	public void completed_order() {
-		
-	}
-	public void finish() {
-		running = false;
-		appointed_creature.setBusy(false);
-		completed_order();
-		hive_mind.cancle_order(this);
+	public void complete_order() {
+		//TODO
 	}
 	public boolean appoint_creature(Creature creature) {
 		if (creature.isBusy()) {
